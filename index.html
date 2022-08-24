@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        Node  topics
+    </h1>
+    <ul>
+        <li>Blocking and non blocking code (Callbacks concept)</li>
+        <li>built in modules (fs, zlib, os, path, etc) , installing new modules using npm</li>
+        <li>REPL</li>
+        <li>Global objects(_filename, _dirname, setTimeout, console etc)-no need to import anything</li>
+        <li>creating web server (pure node no express)-Web module</li>
+    </ul>
+    <h2>
+        HTTP status codes 
+
+    </h2>
+    <ul>
+        <li>200 is ok / good / success</li>
+        <li>404- not found www.googel.com (404 error)</li>
+        <li>500 - internal server error (code me error agaya-dont show actual error to client,just tell internal server error)</li>
+
+    </ul>
+    <h2>
+        Network request structure 
+
+    </h2>
+    <p>HTTP is a request/response protocol</p>
+    <p>Request-which client sends to server. It has two parts .</p>
+    <ol>
+        <li>Request header-you mention HTTP verb (either POST, Get, Put etc), Auth tokens if any , cookies if any</li>
+        <li>Request body-(optional)-we send form data if it is a POST/PUT/Patch request</li>
+
+    </ol>
+    <p>Response-which server sends to client upon request</p>
+    <p>Respnse has two parts</p>
+    <ol>
+        <li>Header - status code (mandatory)-either 200 (201,202, all are success , rest are failed requests), 404 (not found), 403 (validation error). It can also tell Response type( json, html )</li>
+        <li>Body - actual content (either json or html or text)</li>
+    </ol>
+    <h2>
+        blocking (synchronous requests) vs non blocking (asynchronous requests)
+    </h2>
+    <p>
+        whenever asynchrouns operation is found/met, it is removed from call stack,nd execturion proceeds
+
+    </p>
+    <p>
+     if there are more async operatiosn, then they will run as they gets completed
+
+    </p>
+    <p>Whenever we use async function, it takes a callback with two arguments (err, data). So on success and failure it does one of the following (internally)</p>
+    <ul>
+        <li>
+            callback(null, data )
+
+        </li>
+        <li>
+            callback('file not found'(or any other error),null)
+
+        </li>
+    
+    </ul>
+    <p>In first case, it will run else(success case). In second it will run <i>if (err)</i> condition </p>
+    <code>
+        fetch('google.com',(err, data)=>{
+            if (err){
+                console.log('something went wrong')
+                return 
+            }
+            // else is optional, if return was wrtiten above
+            console.log('google html is: ', data)
+        })
+    </code>
+    <code>
+        fetch('googel.com',(err, data)=>{
+
+            if (err){
+                console.log('something went wrong')
+                return 
+            }
+            // else is optional, if return was wrtiten above
+            console.log('google html is: ', data)
+        })
+    </code>
+
+</body>
+</html>
